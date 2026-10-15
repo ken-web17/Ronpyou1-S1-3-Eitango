@@ -96,6 +96,9 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 .field.invalid input{border-color:var(--err)}
 .field.invalid .err{display:block}
 .linkBtn{background:none;border:0;color:var(--accent);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer;padding:0}
+.tinfo div{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:16px}
+.tinfo div:last-child{border-bottom:0}
+.tinfo b{font-weight:800}
 </style>
 </head>
 <body>
@@ -115,6 +118,23 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
     <button class="btn" id="loginBtn" style="width:100%">新規登録・ログイン</button>
     <p class="sub" id="loginMsg" style="margin:10px 0 0;min-height:1.4em"></p>
   </div>
+  <p class="sub" style="margin-top:14px">ログイン・新規登録ができない場合は、はやけんまで。</p>
+</section>
+
+<section class="screen" id="screen-register-confirm">
+  <h1>新規登録の確認</h1>
+  <p class="sub">この学籍番号は、まだ登録されていません。以下の内容で新しく登録します。</p>
+  <div class="card">
+    <div class="tinfo" style="margin-top:0">
+      <div><span>学籍番号</span><b id="rc-id"></b></div>
+      <div><span>生年月日</span><b id="rc-bd"></b></div>
+    </div>
+    <p class="sub" style="margin:14px 0 0">内容が正しければ登録してください。間違えている場合は、入力し直してください。</p>
+    <div class="row" style="margin-top:14px">
+      <button class="btn ghost" id="rcBackBtn" style="flex:1">入力し直す</button>
+      <button class="btn" id="rcConfirmBtn" style="flex:1">この内容で登録する</button>
+    </div>
+  </div>
 </section>
 
 <section class="screen" id="screen-home">
@@ -126,8 +146,26 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
     <button class="menuBtn" data-mode="je"><b>② 日→英　4択</b><span>日本語の意味を見て、英単語を選びます</span></button>
     <button class="menuBtn" data-mode="spell"><b>③ 日→英　つづり入力</b><span>日本語の意味を見て、英単語を1文字ずつ入力します</span></button>
     <button class="menuBtn" data-go="list"><b>④ 単語リスト</b><span>一覧で確認・お気に入り登録</span></button>
+    <button class="menuBtn" data-go="admin" id="adminMenuBtn" style="display:none"><b>⑤ 管理者メニュー</b><span>登録者の一覧・進捗確認</span></button>
   </div>
   <p style="margin-top:16px"><button class="linkBtn" id="switchUserBtn">別の学籍番号でログイン</button></p>
+</section>
+
+<section class="screen" id="screen-admin">
+  <a class="back" data-go="home">← トップへ戻る</a>
+  <h2>管理者メニュー</h2>
+  <p class="sub">登録されている学籍番号と生年月日の一覧です。行をタップすると、その人の進捗を確認できます。</p>
+  <div class="card">
+    <button class="btn ghost small" id="adminReloadBtn">一覧を読み込む</button>
+    <div class="tblwrap" style="overflow-x:auto;margin-top:10px">
+      <table>
+        <thead><tr><th>学籍番号</th><th>生年月日</th><th>登録日時</th></tr></thead>
+        <tbody id="adminBody"></tbody>
+      </table>
+    </div>
+    <p class="sub" id="adminMsg" style="margin-top:10px"></p>
+  </div>
+  <div class="card" id="adminDetail" style="display:none;margin-top:14px"></div>
 </section>
 
 <section class="screen" id="screen-pick">
@@ -154,7 +192,7 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 
 <section class="screen" id="screen-quiz">
   <div class="row" style="justify-content:space-between;margin-bottom:14px">
-    <a class="back" data-go="home" style="margin:0">← トップへ戻る</a>
+    <a class="back" id="quizBackBtn" style="margin:0">← トップへ戻る</a>
     <button class="btn ghost small" id="endQuizBtn">ここで終わる</button>
   </div>
   <div class="card">
@@ -233,11 +271,14 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 </section>
 
 </main>
-<footer style="text-align:center;padding:10px 16px 30px;color:var(--muted);font-size:12px">©2023 Ken, All Rights Reserved.</footer>
+<footer style="text-align:center;padding:10px 16px 30px;color:var(--muted);font-size:12px">
+  <p style="margin:0 0 4px">なにかあれば、はやけんまで。</p>
+  <p style="margin:0">©2026 Ken, All Rights Reserved.</p>
+</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCcjISrD6HsF0EsrA6i8uoqK4XAUfsJFTc",
   authDomain: "seat-reserve-94e1f.firebaseapp.com",
@@ -338,28 +379,36 @@ function validateLoginBd(bd){
   if(y<1990||y>today.getFullYear())return'生年月日が正しくありません。';
   return null;
 }
-async function doLogin(key,msgEl){
-  msgEl.textContent='確認しています…';
-  try{
-    const ref=doc(db,'vocabProgress',key);
-    const snap=await getDoc(ref);
-    let isNew=false;
-    if(snap.exists()){
-      store=snap.data().data||{};
-    }else{
-      isNew=true;
-      store=loadLocalCache(key); // 初回はこの端末のキャッシュがあれば使う
-      await setDoc(ref,{data:store,updatedAt:Date.now()});
-    }
-    currentKey=key;
-    saveLoginInfo(key);
-    saveLocalCache(key,store);
-    return{ok:true,isNew};
-  }catch(e){
-    msgEl.textContent='通信エラーが発生しました。インターネット接続を確認してください。';
-    return{ok:false,isNew:false};
-  }
+function formatBd(bd){return bd.slice(0,4)+'年'+(+bd.slice(4,6))+'月'+(+bd.slice(6,8))+'日';}
+async function loadProgress(key){
+  const ref=doc(db,'vocabProgress',key);
+  const snap=await getDoc(ref);
+  if(snap.exists())return snap.data().data||{};
+  const cached=loadLocalCache(key);
+  await setDoc(ref,{data:cached,updatedAt:Date.now()});
+  return cached;
 }
+/* 管理者メニュー：この学籍番号・生年月日でログインしたときだけ表示する。
+   画面上の表示をしているだけで、Firestore側のルールはどのブラウザから見ても
+   同じように開いている点に注意（詳しくはこの機能を頼んだ会話を参照）。 */
+const ADMIN_ID='2023150',ADMIN_BD='20101217';
+let isAdmin=false;
+async function finishLogin(key,label,id,bd){
+  store=await loadProgress(key);
+  currentKey=key;
+  saveLoginInfo(key);
+  saveLocalCache(key,store);
+  $('#whoAmI').textContent=label;
+  isAdmin=(id===ADMIN_ID&&bd===ADMIN_BD);
+  $('#adminMenuBtn').style.display=isAdmin?'block':'none';
+  if(id&&bd){
+    // 生年月日ハッシュはそのまま、平文の生年月日だけを足す（管理者メニューの一覧用）
+    setDoc(doc(db,'vocabStudents',id),{birthdate:bd},{merge:true}).catch(()=>{});
+  }
+  show('screen-home');
+}
+/* 新規登録の確認待ち */
+let pendingRegister=null;
 $('#loginBtn').addEventListener('click',async()=>{
   const id=$('#loginId').value.trim(),bd=$('#loginBd').value.trim();
   const idErr=validateLoginId(id),bdErr=validateLoginBd(bd);
@@ -367,19 +416,54 @@ $('#loginBtn').addEventListener('click',async()=>{
   $('#f-loginBd').classList.toggle('invalid',!!bdErr);$('#f-loginBd .err').textContent=bdErr||'';
   if(idErr||bdErr)return;
   $('#loginBtn').disabled=true;
-  const key=await loginKeyFor(id,bd);
-  const res=await doLogin(key,$('#loginMsg'));
-  $('#loginBtn').disabled=false;
-  if(res.ok){
-    $('#loginMsg').textContent='';
-    $('#whoAmI').textContent=res.isNew
-      ?'はじめての記録です。前にも使ったことがある場合は、学籍番号・生年月日の入力ミスがないか確認してください。'
-      :'おかえりなさい。前回までの記録を読み込みました。';
-    show('screen-home');
+  $('#loginMsg').textContent='確認しています…';
+  try{
+    const bdHash=await sha256Hex('vocab-s1-bd:'+bd);
+    const studentRef=doc(db,'vocabStudents',id);
+    const studentSnap=await getDoc(studentRef);
+    if(studentSnap.exists()){
+      if(studentSnap.data().bdHash!==bdHash){
+        $('#loginMsg').textContent='この学籍番号は、別の生年月日ですでに登録されています。入力内容を確認してください。それでも解決しない場合は、はやけんまで。';
+        $('#loginBtn').disabled=false;
+        return;
+      }
+      const key=await loginKeyFor(id,bd);
+      $('#loginMsg').textContent='';
+      $('#loginBtn').disabled=false;
+      await finishLogin(key,'おかえりなさい。前回までの記録を読み込みました。',id,bd);
+    }else{
+      // 新規登録：確認画面へ
+      pendingRegister={id,bd,bdHash};
+      $('#rc-id').textContent=id;
+      $('#rc-bd').textContent=formatBd(bd);
+      $('#loginMsg').textContent='';
+      $('#loginBtn').disabled=false;
+      show('screen-register-confirm');
+    }
+  }catch(e){
+    $('#loginMsg').textContent='通信エラーが発生しました。インターネット接続を確認してください。それでも解決しない場合は、はやけんまで。';
+    $('#loginBtn').disabled=false;
+  }
+});
+$('#rcBackBtn').addEventListener('click',()=>{pendingRegister=null;show('screen-login');});
+$('#rcConfirmBtn').addEventListener('click',async()=>{
+  if(!pendingRegister)return;
+  $('#rcConfirmBtn').disabled=true;
+  try{
+    const{id,bd,bdHash}=pendingRegister;
+    await setDoc(doc(db,'vocabStudents',id),{bdHash,createdAt:Date.now()});
+    const key=await loginKeyFor(id,bd);
+    pendingRegister=null;
+    await finishLogin(key,'登録しました。これからの記録が、この学籍番号に保存されます。',id,bd);
+  }catch(e){
+    alert('登録に失敗しました。インターネット接続を確認して、もう一度お試しください。');
+  }finally{
+    $('#rcConfirmBtn').disabled=false;
   }
 });
 $('#switchUserBtn').addEventListener('click',()=>{
-  clearLoginInfo();currentKey=null;store={};
+  clearLoginInfo();currentKey=null;store={};isAdmin=false;
+  $('#adminMenuBtn').style.display='none';
   $('#loginId').value='';$('#loginBd').value='';$('#loginMsg').textContent='';
   show('screen-login');
 });
@@ -390,12 +474,64 @@ async function autoLogin(){
   currentKey=info.key;
   $('#whoAmI').textContent='前回までの記録を読み込んでいます…';
   show('screen-home');
-  const res=await doLogin(info.key,{set textContent(v){}}); // 裏でFirestoreの最新記録を取得
-  // 通信できない場合も、ひとまずこの端末の記録で続行する
-  $('#whoAmI').textContent=res.ok?'':'（オフラインのため、この端末に保存された記録で表示しています）';
+  try{
+    store=await loadProgress(info.key); // 裏でFirestoreの最新記録を取得
+    saveLocalCache(info.key,store);
+    $('#whoAmI').textContent='';
+  }catch(e){
+    $('#whoAmI').textContent='（オフラインのため、この端末に保存された記録で表示しています）';
+  }
 }
 // スクリプト全体の初期化（session などの宣言）が終わってから実行する
 setTimeout(autoLogin,0);
+
+/* ---- 管理者メニュー ---- */
+$('#adminReloadBtn').addEventListener('click',loadAdminList);
+async function loadAdminList(){
+  $('#adminMsg').textContent='読み込んでいます…';
+  $('#adminBody').innerHTML='';$('#adminDetail').style.display='none';
+  try{
+    const snap=await getDocs(collection(db,'vocabStudents'));
+    const rows=[];
+    snap.forEach(d=>rows.push({id:d.id,...d.data()}));
+    rows.sort((a,b)=>a.id.localeCompare(b.id));
+    $('#adminMsg').textContent=rows.length+'件';
+    rows.forEach(r=>{
+      const tr=document.createElement('tr');tr.style.cursor='pointer';
+      const dt=r.createdAt?new Date(r.createdAt).toLocaleString('ja-JP'):'（不明）';
+      tr.innerHTML='<td>'+r.id+'</td><td>'+(r.birthdate?formatBd(r.birthdate):'（未取得）')+'</td><td>'+dt+'</td>';
+      if(r.birthdate)tr.addEventListener('click',()=>showAdminDetail(r));
+      $('#adminBody').appendChild(tr);
+    });
+  }catch(e){
+    $('#adminMsg').textContent='読み込みに失敗しました。';
+  }
+}
+async function showAdminDetail(r){
+  const box=$('#adminDetail');box.style.display='block';
+  box.innerHTML='<p class="sub">読み込んでいます…</p>';
+  try{
+    const key=await loginKeyFor(r.id,r.birthdate);
+    const snap=await getDoc(doc(db,'vocabProgress',key));
+    const data=snap.exists()?(snap.data().data||{}):{};
+    const counts={ej:{att:0,ever:0,still:0},je:{att:0,ever:0,still:0},spell:{att:0,ever:0,still:0}};
+    let favs=0;
+    WORDS.forEach(w=>{
+      if(isFav(data,w[0]))favs++;
+      MODE_ORDER.forEach(m=>{
+        if(isAttempted(data,w[0],m))counts[m].att++;
+        if(isEverWrong(data,w[0],m))counts[m].ever++;
+        if(isStillWrong(data,w[0],m))counts[m].still++;
+      });
+    });
+    box.innerHTML=
+      '<h2 style="font-size:16px;margin:0 0 10px">'+r.id+'（'+formatBd(r.birthdate)+'）の進捗</h2>'+
+      MODE_ORDER.map(m=>'<div class="tinfo"><div><span>'+MODE_LABEL[m]+'</span><b>解答 '+counts[m].att+'／間違えたことがある '+counts[m].ever+'／間違えたまま '+counts[m].still+'</b></div></div>').join('')+
+      '<div class="tinfo"><div><span>お気に入り</span><b>'+favs+'語</b></div></div>';
+  }catch(e){
+    box.innerHTML='<p class="sub">読み込みに失敗しました。</p>';
+  }
+}
 
 function show(id){
   if(id!=='screen-quiz'&&session&&session.autoTimer){clearTimeout(session.autoTimer);session.autoTimer=null;}
@@ -450,10 +586,17 @@ function startQuiz(mode,wordSet,opts){
   opts=opts||{};
   const rnd=mulberry32((Date.now()^Math.floor(Math.random()*1e9))&0xffffffff);
   const order=opts.ordered?wordSet.slice():shuffle(wordSet,rnd);
-  session={mode,order,idx:0,correct:0,rnd,answered:false,results:[]};
+  session={mode,order,idx:0,correct:0,rnd,answered:false,results:[],snapshotStore:JSON.parse(JSON.stringify(store))};
   show('screen-quiz');
   renderQuestion();
 }
+$('#quizBackBtn').addEventListener('click',()=>{
+  if(session&&confirm('ここまでの回答は保存せずに、トップへ戻ります。よろしいですか？')){
+    store=session.snapshotStore;
+    save();
+    show('screen-home');
+  }
+});
 function currentWord(){return session.order[session.idx];}
 function renderQuestion(){
   const w=currentWord();
