@@ -22,70 +22,112 @@
   --ok:#6fd499; --ok-bg:#163826; --err:#ff8d85; --err-bg:#3a1b19; --warn:#e3b341; --warn-bg:#352a0f; --star:#f0c245;}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans",system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans",system-ui,sans-serif;font-size:17px;line-height:1.75;overflow-x:hidden}
 .wrap{max-width:640px;margin:0 auto;padding:24px 16px 60px;min-width:0}
-h1{font-family:"Shippori Mincho",serif;font-size:21px;margin:0 0 4px}
-h2{font-family:"Shippori Mincho",serif;font-size:18px;margin:0}
-.sub{color:var(--muted);font-size:13px;margin:0 0 20px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+h1{font-family:"Shippori Mincho",serif;font-weight:800;font-size:30px;letter-spacing:.01em;margin:0 0 6px}
+h2{font-family:"Shippori Mincho",serif;font-weight:800;font-size:23px;letter-spacing:.01em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;font-weight:500;margin:0 0 20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
 .screen{display:none}
 .screen.on{display:block}
-.menu{display:grid;gap:12px}
-.menuBtn{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;font:inherit;color:var(--ink);cursor:pointer}
-.menuBtn b{display:block;font-family:"Shippori Mincho",serif;font-size:17px;margin-bottom:2px}
+.menu{display:grid;gap:14px}
+.menuBtn{display:block;width:100%;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:12px;padding:18px 20px;font:inherit;color:var(--ink);cursor:pointer}
+.menuBtn b{display:block;font-family:"Shippori Mincho",serif;font-weight:800;font-size:20px;margin-bottom:3px}
+.menuBtn span{font-weight:500}
 .menuBtn span{font-size:13px;color:var(--muted)}
 .menuBtn:hover{border-color:var(--accent)}
-.btn{font:inherit;font-weight:700;font-size:15px;padding:11px 18px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.btn{font:inherit;font-weight:700;font-size:16px;padding:14px 20px;min-height:48px;border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.small{font-size:13px;padding:7px 12px}
 .btn:disabled{opacity:.45;cursor:default}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .back{display:inline-block;margin-bottom:14px;color:var(--accent);text-decoration:none;font-size:14px;cursor:pointer}
-.progress{font-size:13px;color:var(--muted);margin-bottom:10px}
-.qno{font-size:12px;color:var(--muted)}
-.prompt{font-family:"Shippori Mincho",serif;font-size:24px;margin:6px 0 20px;word-break:break-word}
+.progress{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:10px}
+.qno{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.03em}
+.prompt{font-family:"Shippori Mincho",serif;font-weight:800;font-size:34px;line-height:1.35;margin:8px 0 24px;word-break:break-word}
 .choices{display:grid;gap:10px;margin-bottom:14px;min-width:0}
-.choice{text-align:left;padding:13px 16px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font:inherit;font-size:16px;color:var(--ink);cursor:pointer;width:100%}
+.choice{text-align:left;padding:17px 18px;min-height:48px;border-radius:9px;border:2px solid var(--line);background:var(--surface);font:inherit;font-weight:700;font-size:18px;color:var(--ink);cursor:pointer;width:100%}
 .choice.correct{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
 .choice.wrong{background:var(--err-bg);border-color:var(--err);color:var(--err)}
 .choice:disabled{cursor:default}
 .utilRow{display:flex;gap:10px;margin:4px 0 4px;flex-wrap:wrap;align-items:center}
-.star{font-size:22px;background:none;border:0;cursor:pointer;line-height:1;padding:4px}
+.star{font-size:28px;background:none;border:0;cursor:pointer;line-height:1;padding:10px;min-width:48px;min-height:48px}
 .star.on{color:var(--star)}
 .star.off{color:var(--line)}
-.feedback{min-height:1.6em;font-weight:700;margin-bottom:10px}
+.feedback{min-height:1.6em;font-weight:800;font-size:19px;margin-bottom:10px}
 .feedback.ok{color:var(--ok)}
 .feedback.err{color:var(--err)}
 .spellRow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 18px}
-.spellBox{width:32px;height:42px;text-align:center;font-size:19px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit;padding:0}
+.spellBox{width:40px;height:52px;text-align:center;font-size:22px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);font:inherit;padding:0}
 .spellBox.fixed{background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center}
 .spellBox.dash{border:0;background:none;width:12px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
 .spellBox:focus-visible{outline:2px solid var(--accent)}
 .resultBox{text-align:center;padding:30px 10px}
 .resultBox .num{font-family:"Shippori Mincho",serif;font-size:40px;margin:10px 0}
+#scoreRing{width:140px;height:140px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;background:conic-gradient(var(--ok) 0deg, var(--ok) var(--ring-deg,0deg), var(--line) var(--ring-deg,0deg));}
+#scoreRing .inner{width:112px;height:112px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-family:"Shippori Mincho",serif;font-weight:800;font-size:26px}
+.resBadge{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-weight:800;font-size:13px}
+.resBadge.ok{background:var(--ok-bg);color:var(--ok)}
+.resBadge.ng{background:var(--err-bg);color:var(--err)}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;background:var(--surface)}
-.hideBtn{font-size:11px;padding:3px 9px}
+.hideBtn{font-size:11px;padding:3px 9px;min-height:auto}
+.filterBtn.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.modeChips{display:flex;gap:3px}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:4px;font-size:10px;font-weight:700;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.chip.ever{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.chip.still{background:var(--err-bg);color:var(--err);border-color:var(--err)}
+.chip.ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
 .cell{cursor:pointer;display:inline-block;min-width:3em;border-radius:4px;padding:2px 4px}
 .cell.hidden{background:var(--line);color:transparent}
 .listHead{display:flex;justify-content:space-between;align-items:center;margin:10px 0 2px}
 .listHead:first-child{margin-top:0}
-@media (max-width:420px){.spellBox{width:26px;height:38px;font-size:16px}.prompt{font-size:20px}}
+@media (max-width:420px){.spellBox{width:32px;height:46px;font-size:19px}.prompt{font-size:20px}}
+.kbdRow{display:flex;justify-content:center;gap:5px;margin-bottom:5px}
+.kbdKey{font:inherit;font-weight:700;font-size:16px;width:30px;height:42px;padding:0;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.kbdKey:active{background:var(--accent);color:var(--accent-ink)}
+.kbdBackKey{width:auto;padding:0 14px;font-size:14px}
+.rowCorrect{background:var(--ok-bg)}
+.field{display:grid;gap:4px;margin-bottom:16px}
+.field label{font-size:14px;font-weight:700}
+.field input{width:100%;font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.field .err{color:var(--err);font-size:13px;font-weight:700;display:none;margin:4px 0 0}
+.field.invalid input{border-color:var(--err)}
+.field.invalid .err{display:block}
+.linkBtn{background:none;border:0;color:var(--accent);text-decoration:underline;font:inherit;font-size:13px;cursor:pointer;padding:0}
 </style>
 </head>
 <body>
 <main class="wrap">
 
-<section class="screen on" id="screen-home">
+<section class="screen on" id="screen-login">
+  <h1>論理表現Ⅰ 単語学習</h1>
+  <p class="sub">学籍番号と生年月日で、どの端末でも学習記録を同期します。</p>
+  <div class="card">
+    <div class="field" id="f-loginId">
+      <label>学籍番号（7桁）</label>
+      <input id="loginId" inputmode="numeric" maxlength="7" placeholder="例：2023001">
+      <p class="sub" style="margin:2px 0 0">入学年度4桁（例：2023）＋下駄箱の番号3桁（例：001）</p>
+      <p class="err"></p>
+    </div>
+    <div class="field" id="f-loginBd"><label>生年月日（8桁）</label><input id="loginBd" inputmode="numeric" maxlength="8" placeholder="例：20100401"><p class="err"></p></div>
+    <button class="btn" id="loginBtn" style="width:100%">新規登録・ログイン</button>
+    <p class="sub" id="loginMsg" style="margin:10px 0 0;min-height:1.4em"></p>
+  </div>
+</section>
+
+<section class="screen" id="screen-home">
   <h1>論理表現Ⅰ 単語学習</h1>
   <p class="sub">第3回定期考査（S1）範囲：No.635〜898</p>
+  <p class="sub" id="whoAmI" style="margin-top:-14px"></p>
   <div class="menu">
     <button class="menuBtn" data-mode="ej"><b>① 英→日　4択</b><span>英単語を見て、日本語の意味を選びます</span></button>
     <button class="menuBtn" data-mode="je"><b>② 日→英　4択</b><span>日本語の意味を見て、英単語を選びます</span></button>
     <button class="menuBtn" data-mode="spell"><b>③ 日→英　つづり入力</b><span>日本語の意味を見て、英単語を1文字ずつ入力します</span></button>
     <button class="menuBtn" data-go="list"><b>④ 単語リスト</b><span>一覧で確認・お気に入り登録</span></button>
   </div>
+  <p style="margin-top:16px"><button class="linkBtn" id="switchUserBtn">別の学籍番号でログイン</button></p>
 </section>
 
 <section class="screen" id="screen-pick">
@@ -94,12 +136,27 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
   <p class="sub">出題する範囲を選んでください。</p>
   <div class="menu">
     <button class="menuBtn" id="pickAll"><b>すべての単語で挑戦</b><span id="pickAllSub"></span></button>
-    <button class="menuBtn" id="pickMistake"><b>間違えたものだけで挑戦</b><span id="pickMistakeSub"></span></button>
+    <button class="menuBtn" id="pickNew"><b>まだ解いたことのない単語で挑戦</b><span id="pickNewSub"></span></button>
+    <button class="menuBtn" id="pickEver"><b>間違えたことがある単語で挑戦</b><span id="pickEverSub"></span></button>
+    <button class="menuBtn" id="pickStill"><b>間違えたままの単語で挑戦</b><span id="pickStillSub"></span></button>
   </div>
+  <div class="card" style="margin-top:14px">
+    <b style="font-family:'Shippori Mincho',serif;font-size:15px">番号を指定して始める</b>
+    <p class="sub" style="margin:4px 0 10px">指定した番号から、No.898まで順番に出題します。</p>
+    <div class="row">
+      <input type="number" id="pickFromNo" min="635" max="898" placeholder="例：750" style="width:120px">
+      <button class="btn" id="pickFromBtn">ここから始める</button>
+    </div>
+    <p class="err" id="pickFromErr" style="display:block;min-height:1.4em;margin:6px 0 0"></p>
+  </div>
+  <p class="sub" style="margin-top:14px">※この2つは、今選んだ問題形式（①〜③）で間違えたものだけが対象です。</p>
 </section>
 
 <section class="screen" id="screen-quiz">
-  <a class="back" data-go="home">← トップへ戻る（記録は保存されます）</a>
+  <div class="row" style="justify-content:space-between;margin-bottom:14px">
+    <a class="back" data-go="home" style="margin:0">← トップへ戻る</a>
+    <button class="btn ghost small" id="endQuizBtn">ここで終わる</button>
+  </div>
   <div class="card">
     <div class="progress" id="qProgress"></div>
     <div class="qno" id="qNo"></div>
@@ -107,13 +164,18 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 
     <div id="choiceArea"></div>
     <div id="spellArea"></div>
+    <div id="kbdArea"></div>
 
     <div class="feedback" id="qFeedback"></div>
     <div class="utilRow">
-      <button class="btn ghost small" id="idkBtn">わからない・自信がない</button>
+      <button class="btn ghost" id="idkBtn">わからない・自信がない</button>
       <button class="star off" id="favBtn" type="button" title="お気に入り">★</button>
-      <span style="flex:1"></span>
-      <button class="btn small" id="nextBtn" style="display:none">次へ</button>
+    </div>
+    <div class="utilRow" id="nextRow" style="display:none">
+      <button class="btn" id="nextBtn" style="width:100%;position:relative;overflow:hidden">
+        <span id="nextBarWrap" style="position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg,#ffffff55,#ffffff22);transform-origin:left;"></span>
+        <span style="position:relative">次へ</span>
+      </button>
     </div>
   </div>
 </section>
@@ -121,11 +183,19 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 <section class="screen" id="screen-result">
   <div class="card resultBox">
     <h2>おつかれさまでした</h2>
+    <div id="scoreRing"></div>
     <div class="num" id="resultScore"></div>
     <p class="sub" id="resultSub"></p>
-    <div class="row" style="justify-content:center">
-      <button class="btn ghost" data-go="home">トップへ戻る</button>
-      <button class="btn" id="retryMistakeBtn">間違えたものだけもう一度</button>
+    <button class="btn" id="retryMistakeBtn" style="width:100%;font-size:18px;padding:18px">間違えたものだけもう一度</button>
+    <button class="btn ghost" data-go="home" style="width:100%;margin-top:10px">トップへ戻る</button>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <h2 style="margin-bottom:10px">今回の結果一覧</h2>
+    <div style="max-height:50vh;overflow-y:auto">
+      <table>
+        <thead><tr><th>No</th><th>英単語</th><th>日本語訳</th><th>結果</th></tr></thead>
+        <tbody id="resultBody"></tbody>
+      </table>
     </div>
   </div>
 </section>
@@ -143,9 +213,19 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
       <span class="sub" style="margin:0">日本語訳</span>
       <button class="btn ghost hideBtn" id="hideJaBtn">日本語訳をすべて隠す</button>
     </div>
-    <div style="max-height:62vh;overflow-y:auto;margin-top:8px">
+    <div class="listHead" style="flex-wrap:wrap;gap:6px">
+      <span class="sub" style="margin:0">絞り込み</span>
+      <span class="row" style="gap:6px">
+        <button class="btn ghost hideBtn filterBtn on" data-filter="all">すべて</button>
+        <button class="btn ghost hideBtn filterBtn" data-filter="ever">間違えたことがある</button>
+        <button class="btn ghost hideBtn filterBtn" data-filter="still">間違えたまま</button>
+        <button class="btn ghost hideBtn filterBtn" data-filter="fav">★お気に入り</button>
+      </span>
+    </div>
+    <p class="sub" style="margin:4px 0 0">記録の①②③は、それぞれ①英→日4択／②日→英4択／③つづり入力のこと。濃い色＝今も間違えたまま、薄い色＝一度間違えたが今は正解。</p>
+    <div style="max-height:58vh;overflow-y:auto;margin-top:8px">
       <table>
-        <thead><tr><th>No</th><th>英単語</th><th>日本語訳</th><th>★</th></tr></thead>
+        <thead><tr><th>No</th><th>英単語</th><th>日本語訳</th><th>記録</th><th>★</th></tr></thead>
         <tbody id="listBody"></tbody>
       </table>
     </div>
@@ -153,18 +233,41 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 </section>
 
 </main>
+<footer style="text-align:center;padding:10px 16px 30px;color:var(--muted);font-size:12px">©2023 Ken, All Rights Reserved.</footer>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyCcjISrD6HsF0EsrA6i8uoqK4XAUfsJFTc",
+  authDomain: "seat-reserve-94e1f.firebaseapp.com",
+  projectId: "seat-reserve-94e1f",
+  storageBucket: "seat-reserve-94e1f.firebasestorage.app",
+  messagingSenderId: "975102672764",
+  appId: "1:975102672764:web:3a0850eba04315abdf2ef9"
+};
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
+
 /* ===== 単語データ（No.635〜898／669〜688は未確認のため欠番） ===== */
-const WORDS = [[635, "experience", "経験／を経験する"], [636, "suffer", "《〜に》苦しむ《from》；害を受ける／(苦痛・損害)を受ける"], [637, "area", "地域；面積；分野"], [638, "state", "状態；国家；州／を述べる"], [639, "statement", "陳述；声明"], [640, "declare", "を明言する；を宣言する"], [641, "condition", "状況；状態；条件"], [642, "situation", "立場；状況"], [643, "position", "立場；状況；姿勢；位置"], [644, "fact", "事実"], [645, "problem", "問題"], [646, "trouble", "困ること；問題(点)／を悩ませる／《否定文で》心配する"], [647, "although", "…にもかかわらず；…だが"], [648, "ocean", "《通例the -》大洋；海"], [649, "taste", "味がする；の味をみる／味；《〜の》好み，趣味《for, in》"], [650, "float", "浮く；漂う／を浮かべる"], [651, "stand", "立っている；《補語・副詞(句)を伴って》(ある位置・状態に)ある／を我慢する"], [652, "bear", "に耐える；を支える；(責任)を持つ；(子)を産む／クマ"], [653, "endure", "に耐える"], [654, "bottom", "底；下部"], [655, "heavy", "重い；激しい"], [656, "hold", "を持っている；を保つ；を催す／持ちこたえる"], [657, "poverty", "貧困"], [658, "bully", "をいじめる／いじめっ子"], [659, "abuse", "乱用；虐待／を乱用する；を虐待する"], [660, "discrimination", "差別；区別"], [661, "prejudice", "《〜に対する》偏見；先入観《against》"], [662, "continent", "大陸"], [663, "horizon", "《通例the -》地[水]平線；範囲"], [664, "mistake", "(判断上の)誤り，間違い；勘違い"], [665, "error", "(基準から外れた)誤り"], [666, "fault", "誤り；欠陥；欠点；(落度などの)責任"], [667, "expect", "を予期する；を期待する；と思う"], [668, "anticipate", "を予想する"], [689, "disagree", "《人と/〜について》意見が異なる《with/on, about》"], [690, "accept", "を受け入れる；を承認する"], [691, "approve", "《〜に》賛成[同意]する《of》／(計画・考えなど)を(公に)承認[認可]する"], [692, "admit", "《〜を》(真であると)認める《to》／を認める；の入場[入学；入会]を認める"], [693, "exciting", "わくわくさせる"], [694, "question", "質問；問題点／(人)に質問する"], [695, "mood", "気分；(作品などが持つ)雰囲気"], [696, "atmosphere", "雰囲気；周囲の状況；大気"], [697, "psychologist", "心理学者"], [698, "psychology", "心理(学)"], [699, "research", "研究；調査／研究する"], [700, "topic", "話題；論題"], [701, "experiment", "実験(する)"], [702, "connect", "《〜に》をつなぐ[関係づける]《to, with》／つながる"], [703, "contact", "接触；連絡／に連絡する"], [704, "relate", "《〜に》を関連づける《to》；を話す／《〜と》関係がある《to》"], [705, "machine", "機械"], [706, "check", "を調べる；を阻止する／検査；点検；小切手；預かり所"], [707, "confirm", "を立証する；を確かめる"], [708, "temperature", "温度；体温"], [709, "muscle", "筋肉"], [710, "activity", "活動"], [711, "while", "…する間に；…の間ずっと／その一方で／時間"], [712, "watch", "(テレビなど)を見る；を見守る；を見張る／《〜に》注意する《for》；腕時計；見張り"], [713, "observe", "を観察する；に気づく"], [714, "interesting", "(物・事などが)おもしろい"], [715, "funny", "おもしろい；奇妙な"], [716, "indifferent", "無関心な，無頓着な"], [717, "attractive", "魅力的な"], [718, "curious", "《〜について》好奇心の強い《about》；奇妙な"], [719, "appeal", "懇願する；求める；興味を引く／懇願；魅力"], [720, "fascinate", "を魅了する"], [721, "tend", "《…する》傾向がある《to do》"], [722, "inclined", "…したいと思って；…する傾向があって《to do》"], [723, "feeling", "感情；(漠然とした)感じ；意見"], [724, "emotion", "感情"], [725, "sense", "感覚；意味；思慮"], [726, "moment", "(特定の)時；瞬間"], [727, "instant", "即刻の／瞬間"], [728, "angry", "《人に/物事に》怒った[ている]《with, at/about, at》"], [729, "mad", "怒っている；熱中して；ばかげた"], [730, "crazy", "正気でない；《〜に》熱狂した《about, for, over》"], [731, "instead", "その代わりに"], [732, "delight", "大きな喜び／を大喜びさせる／楽しむ"], [733, "sympathy", "思いやり；同情；共感"], [734, "pity", "哀れみ；残念なこと／を気の毒に思う"], [735, "sorrow", "(深い)悲しみ"], [736, "depress", "を落胆させる"], [737, "regret", "後悔(する)；残念(に思う)"], [738, "despair", "絶望／《〜に》絶望する《of》"], [739, "lonely", "孤独の；寂しい"], [740, "frustrate", "をいらいらさせる；を挫折させる"], [741, "ashamed", "《〜を》恥じて《of》"], [742, "likely", "…しそうで；ありそうな／たぶん"], [743, "romantic", "情熱的な；恋愛の"], [744, "warm", "暖かい"], [745, "harmony", "調和"], [746, "uneasy", "不安な"], [747, "combination", "組み合わせ；結合"], [748, "characteristic", "特徴／《〜に》特徴的な《of》"], [749, "impression", "印象；感動"], [750, "image", "像；画像；全体的印象"], [751, "listener", "聞き手；(ラジオの)聴取者"], [752, "fearful", "恐れて；恐ろしい"], [753, "mainly", "主として"], [754, "note", "メモ；注釈；紙幣／音／に言及する；に注意する；に気づく"], [755, "bill", "請求書；紙幣；法案"], [756, "currency", "通貨；普及"], [757, "technique", "技術；技巧"], [758, "technology", "科学技術"], [759, "editor", "編集者"], [760, "magazine", "雑誌"], [761, "extreme", "極端；極端な行動／極端な"], [762, "provide", "を(人に)供給する《for, to》／に《物を》提供する《with》"], [763, "supply", "を(人に)供給する《for, to》／に《物を》与える《with》／供給；生活必需品"], [764, "reader", "読者，読む人"], [765, "statistics", "統計(学)"], [766, "journalist", "ジャーナリスト"], [767, "instruct", "に教える；に指示する"], [768, "command", "命令；指揮(権)；(言語の)運用力／を指揮[命令]する；(風景など)を見下ろす"], [769, "order", "に命令する；を注文する／順番；命令；注文"], [770, "well-known", "よく知られている，有名な"], [771, "article", "記事；条項；品物"], [772, "president", "大統領；議長；会長"], [773, "palace", "宮殿；公邸；邸宅"], [774, "republic", "共和国"], [775, "arrive", "《〜に》着く《at, in》"], [776, "reach", "に着く；(手)を伸ばす／を(手を伸ばして)取る／手[足]を伸ばす"], [777, "approach", "近づく／取り組み(方)；接近(方法)"], [778, "access", "接近，出入り；《〜の》利用権《to》／に接続する"], [779, "sentence", "文；判決／(刑を)に宣告する"], [780, "refuse", "を拒絶する／断る"], [781, "decline", "減少する；衰退する／を断る／減少；衰退；低下"], [782, "deny", "を否定する；を拒む"], [783, "reject", "を拒絶する"], [784, "publish", "を出版する；を発表する；を掲載する"], [785, "surround", "を囲む"], [786, "height", "高さ"], [787, "length", "(物や時間の)長さ"], [788, "depth", "深さ"], [789, "width", "幅；広さ"], [790, "measure", "を測る；を評価する／対策；手段"], [791, "obtain", "を入手する；を獲得する"], [792, "policy", "政策；信条"], [793, "principle", "主義；方針；(自然の)原理；原則"], [794, "abstract", "抽象的な／要約／を要約する"], [795, "concrete", "具体的な／コンクリート"], [796, "education", "教育"], [797, "lecture", "講義；講演／講義[講演]する"], [798, "professor", "教授"], [799, "classical", "古典の；クラシックの"], [800, "especially", "特に"], [801, "test", "検査；試験；実験；試金石／試験する；検査する"], [802, "silence", "沈黙；静けさ"], [803, "advice", "忠告；助言"], [804, "score", "(試合・試験の)得点；楽譜／得点する"], [805, "average", "平均／平均的な"], [806, "whole", "《the -》全体[全部]の；まるごとの"], [807, "summary", "要約"], [808, "detail", "細部；《-s》詳細"], [809, "now", "今；さて"], [810, "immediately", "即座に；直接に"], [811, "major", "主要な；大部分の；重大な；長調の／《〜を》専攻する(in)"], [812, "minor", "それほど重要でない，小さな；少数の；短調の"], [813, "key", "かぎ；手がかり；(音楽の)調；《形容詞的に》重要な"], [814, "simply", "ただ単に；簡単に"], [815, "since", "…して以来；…だから／〜以来"], [816, "performance", "遂行；上演；演奏；成績"], [817, "able", "可能な；有能な"], [818, "ability", "能力；才能"], [819, "unable", "《…することが》できない《to do》"], [820, "available", "手に入る；利用できる"], [821, "afford", "〜を持てる(経済的)余裕がある；…できる余裕がある《to do》；(機会など)を与える"], [822, "capacity", "能力；容量"], [823, "talent", "才能(ある人々)"], [824, "potential", "潜在的な；可能性のある／潜在能力；可能性"], [825, "instinct", "本能"], [826, "skill", "技術；技能；熟練"], [827, "technique", "技術；技巧"], [828, "technology", "科学技術"], [829, "editor", "編集者"], [830, "magazine", "雑誌"], [831, "extreme", "極端；極端な行動／極端な"], [832, "provide", "を(人に)供給する《for, to》／に《物を》提供する《with》"], [833, "supply", "を(人に)供給する《for, to》／に《物を》与える《with》／供給；生活必需品"], [834, "reader", "読者，読む人"], [835, "statistics", "統計(学)"], [836, "journalist", "ジャーナリスト"], [837, "instruct", "に教える；に指示する"], [838, "command", "命令；指揮(権)；(言語の)運用力／を指揮[命令]する；(風景など)を見下ろす"], [839, "order", "に命令する；を注文する／順番；命令；注文"], [840, "well-known", "よく知られている，有名な"], [841, "article", "記事；条項；品物"], [842, "president", "大統領；議長；会長"], [843, "palace", "宮殿；公邸；邸宅"], [844, "republic", "共和国"], [845, "arrive", "《〜に》着く《at, in》"], [846, "reach", "に着く；(手)を伸ばす／を(手を伸ばして)取る／手[足]を伸ばす"], [847, "approach", "近づく／取り組み(方)；接近(方法)"], [848, "access", "接近，出入り；《〜の》利用権《to》／に接続する"], [849, "sentence", "文；判決／(刑を)に宣告する"], [850, "refuse", "を拒絶する／断る"], [851, "decline", "減少する；衰退する／を断る／減少；衰退；低下"], [852, "deny", "を否定する；を拒む"], [853, "reject", "を拒絶する"], [854, "publish", "を出版する；を発表する；を掲載する"], [855, "surround", "を囲む"], [856, "height", "高さ"], [857, "length", "(物や時間の)長さ"], [858, "depth", "深さ"], [859, "width", "幅；広さ"], [860, "measure", "を測る；を評価する／対策；手段"], [861, "obtain", "を入手する；を獲得する"], [862, "acquire", "を習得する；を手に入れる"], [863, "gain", "を手に入れる；をもうける／(さらに)よくなる；増加する／利益；増大"], [864, "earn", "(お金・名声など)を得る；をもたらす"], [865, "meanwhile", "その間に；他方"], [866, "impatient", "いらいらしている；待ち遠しく思う"], [867, "patient", "患者／忍耐強い"], [868, "press", "押すこと；印刷；報道(機関)／を圧迫する；を強要する"], [869, "urgent", "緊急の；催促する"], [870, "receive", "を受け取る；を被る"], [871, "reply", "返事／《〜に》答える《to》／と答える"], [872, "inform", "に《〜を》知らせる《of》／情報を提供する"], [873, "announce", "を発表する"], [874, "fire", "を解雇する；を発砲する／火；火事"], [875, "fail", "に落ちる；…し損なう；(人)の役に立たない／《〜に》失敗する《in》"], [876, "reluctantly", "いやいやながら，しぶしぶ"], [877, "reluctant", "気の進まない"], [878, "originally", "元来は；独創的に"], [879, "poor", "貧しい；粗末な；かわいそうな"], [880, "arrest", "を逮捕する／逮捕"], [881, "prison", "刑務所；拘置所"], [882, "allow", "を許す；を認める"], [883, "forgive", "(人・行為・罪など)を許す"], [884, "excuse", "を許す／言い訳"], [885, "permit", "を許す；を可能にする"], [886, "license", "を認可する／免許(証)"], [887, "step", "歩み；(はしご・階段などの)段；手段／歩く／(足)を踏み入れる"], [888, "stage", "(発達の)段階；舞台"], [889, "process", "過程"], [890, "lead", "(道などが)通じる／を導く；を率いる／首位"], [891, "direct", "を向ける／に指図する／に道を教える／直接の"], [892, "guide", "案内する／指導する／案内人[書]；指導者；指針"], [893, "control", "を支配する／を制御する／を抑制する／支配(力)；抑制"], [894, "operate", "を操作する／動く；作用する／手術する"], [895, "persuade", "を《〜するよう》説得する《to do》"], [896, "convince", "(人)を確信[納得]させる"], [897, "dominate", "支配する"], [898, "wall", "壁"]];
+const WORDS = [[635, "experience", "経験／を経験する"], [636, "suffer", "《〜に》苦しむ《from》；害を受ける／(苦痛・損害)を受ける"], [637, "area", "地域；面積；分野"], [638, "state", "状態；国家；州／を述べる"], [639, "statement", "陳述；声明"], [640, "declare", "を明言する；を宣言する"], [641, "condition", "状況；状態；条件"], [642, "situation", "立場；状況"], [643, "position", "立場；状況；姿勢；位置"], [644, "fact", "事実"], [645, "problem", "問題"], [646, "trouble", "困ること；問題(点)／を悩ませる／《否定文で》心配する"], [647, "although", "…にもかかわらず；…だが"], [648, "ocean", "《通例the -》大洋；海"], [649, "taste", "味がする；の味をみる／味；《〜の》好み，趣味《for, in》"], [650, "float", "浮く；漂う／を浮かべる"], [651, "stand", "立っている；《補語・副詞(句)を伴って》(ある位置・状態に)ある／を我慢する"], [652, "bear", "に耐える；を支える；(責任)を持つ；(子)を産む／クマ"], [653, "endure", "に耐える"], [654, "bottom", "底；下部"], [655, "heavy", "重い；激しい"], [656, "hold", "を持っている；を保つ；を催す／持ちこたえる"], [657, "poverty", "貧困"], [658, "bully", "をいじめる／いじめっ子"], [659, "abuse", "乱用；虐待／を乱用する；を虐待する"], [660, "discrimination", "差別；区別"], [661, "prejudice", "《〜に対する》偏見；先入観《against》"], [662, "continent", "大陸"], [663, "horizon", "《通例the -》地[水]平線；範囲"], [664, "mistake", "(判断上の)誤り，間違い；勘違い"], [665, "error", "(基準から外れた)誤り"], [666, "fault", "誤り；欠陥；欠点；(落度などの)責任"], [667, "expect", "を予期する；を期待する；と思う"], [668, "anticipate", "を予想する"], [669, "predict", "を予言[予測]する"], [670, "forecast", "予報，予想／(天気)を予報する；を予想する"], [671, "pain", "痛み；苦しみ"], [672, "prepare", "の準備をする；《〜の》覚悟をさせる《for/to do》／《〜に対して》準備をする《for, against》"], [673, "ready", "準備[用意]ができた"], [674, "terrible", "恐ろしい；ひどい"], [675, "awful", "(光景などが)恐ろしい；ひどい"], [676, "horrible", "ぞっとするほど恐ろしい；実にひどい"], [677, "cruel", "残酷な；(物事が)つらい"], [678, "frighten", "を怖がらせる"], [679, "painful", "痛い；つらい；骨の折れる"], [680, "keep", "を保つ；(動物)を飼う／…し続ける《on》…ing"], [681, "maintain", "を主張する；を維持する"], [682, "sustain", "を持続させる；(人)を支える"], [683, "understand", "理解する"], [684, "link", "関連(性)／をつなぐ"], [685, "actually", "(だが)実は(=indeed)；実際に"], [686, "true", "本当の；《〜に》あてはまる《of》"], [687, "usually", "たいてい"], [688, "agree", "《〜に》同意する《to》；《人/事柄に》賛成する《with/on, about》／《…という事》に同意する《that》"], [689, "disagree", "《人と/〜について》意見が異なる《with/on, about》"], [690, "accept", "を受け入れる；を承認する"], [691, "approve", "《〜に》賛成[同意]する《of》／(計画・考えなど)を(公に)承認[認可]する"], [692, "admit", "《〜を》(真であると)認める《to》／を認める；の入場[入学；入会]を認める"], [693, "exciting", "わくわくさせる"], [694, "question", "質問；問題点／(人)に質問する"], [695, "mood", "気分；(作品などが持つ)雰囲気"], [696, "atmosphere", "雰囲気；周囲の状況；大気"], [697, "psychologist", "心理学者"], [698, "psychology", "心理(学)"], [699, "research", "研究；調査／研究する"], [700, "topic", "話題；論題"], [701, "experiment", "実験(する)"], [702, "connect", "《〜に》をつなぐ[関係づける]《to, with》／つながる"], [703, "contact", "接触；連絡／に連絡する"], [704, "relate", "《〜に》を関連づける《to》；を話す／《〜と》関係がある《to》"], [705, "machine", "機械"], [706, "check", "を調べる；を阻止する／検査；点検；小切手；預かり所"], [707, "confirm", "を立証する；を確かめる"], [708, "temperature", "温度；体温"], [709, "muscle", "筋肉"], [710, "activity", "活動"], [711, "while", "…する間に；…の間ずっと／その一方で／時間"], [712, "watch", "(テレビなど)を見る；を見守る；を見張る／《〜に》注意する《for》；腕時計；見張り"], [713, "observe", "を観察する；に気づく"], [714, "interesting", "(物・事などが)おもしろい"], [715, "funny", "おもしろい；奇妙な"], [716, "indifferent", "無関心な，無頓着な"], [717, "attractive", "魅力的な"], [718, "curious", "《〜について》好奇心の強い《about》；奇妙な"], [719, "appeal", "懇願する；求める；興味を引く／懇願；魅力"], [720, "fascinate", "を魅了する"], [721, "tend", "《…する》傾向がある《to do》"], [722, "inclined", "…したいと思って；…する傾向があって《to do》"], [723, "feeling", "感情；(漠然とした)感じ；意見"], [724, "emotion", "感情"], [725, "sense", "感覚；意味；思慮"], [726, "moment", "(特定の)時；瞬間"], [727, "instant", "即刻の／瞬間"], [728, "angry", "《人に/物事に》怒った[ている]《with, at/about, at》"], [729, "mad", "怒っている；熱中して；ばかげた"], [730, "crazy", "正気でない；《〜に》熱狂した《about, for, over》"], [731, "instead", "その代わりに"], [732, "delight", "大きな喜び／を大喜びさせる／楽しむ"], [733, "sympathy", "思いやり；同情；共感"], [734, "pity", "哀れみ；残念なこと／を気の毒に思う"], [735, "sorrow", "(深い)悲しみ"], [736, "depress", "を落胆させる"], [737, "regret", "後悔(する)；残念(に思う)"], [738, "despair", "絶望／《〜に》絶望する《of》"], [739, "lonely", "孤独の；寂しい"], [740, "frustrate", "をいらいらさせる；を挫折させる"], [741, "ashamed", "《〜を》恥じて《of》"], [742, "likely", "…しそうで；ありそうな／たぶん"], [743, "romantic", "情熱的な；恋愛の"], [744, "warm", "暖かい"], [745, "harmony", "調和"], [746, "uneasy", "不安な"], [747, "combination", "組み合わせ；結合"], [748, "characteristic", "特徴／《〜に》特徴的な《of》"], [749, "impression", "印象；感動"], [750, "image", "像；画像；全体的印象"], [751, "listener", "聞き手；(ラジオの)聴取者"], [752, "fearful", "恐れて；恐ろしい"], [753, "mainly", "主として"], [754, "note", "メモ；注釈；紙幣／音／に言及する；に注意する；に気づく"], [755, "bill", "請求書；紙幣；法案"], [756, "currency", "通貨；普及"], [757, "slow", "遅い；(時計が)遅れている／速度を落とす／を遅くする"], [758, "soft", "柔らかい；穏やかな"], [759, "mild", "(天候が)穏やかな；(食べ物が)まろやかな；(程度などが)軽い"], [760, "fill", "を満たす；を占める／いっぱいになる"], [761, "instrument", "器具；楽器"], [762, "increase", "を増やす／増加する／増加"], [763, "knowledge", "知識；認識"], [764, "work", "働く／を勉強する／仕事；勉強；作品"], [765, "suit", "に好都合である，適する；(服の色が)(人)に似合う"], [766, "fit", "合う／(大きさなどが)に合う／適した／体調がよい／発作"], [767, "match", "(物が)(物)と調和する；に匹敵する／試合；好敵手；匹敵するもの"], [768, "adjust", "を調節する；を《〜に》適合させる《to》"], [769, "adapt", "《〜に》適応する《to》／を適応させる；を合わせる"], [770, "adopt", "を採用する；を養子にする"], [771, "apply", "《〜に/〜を》申し込む《to/for》；《〜に》当てはまる《to》／を適用する；(心)を向ける；(薬)を塗る"], [772, "scene", "場面；光景；現場"], [773, "tool", "道具；手段"], [774, "device", "装置；工夫"], [775, "equipment", "装備；備品"], [776, "furniture", "家具"], [777, "material", "資料；原料；物質／物質の；肉体(上)の"], [778, "unbelievable", "驚くような；信じられない"], [779, "incredible", "すばらしい；信じられない"], [780, "idea", "考え；概念"], [781, "smart", "頭のよい；洗練された"], [782, "wise", "賢い"], [783, "intelligent", "知能の高い"], [784, "bright", "明るい；頭のいい"], [785, "popular", "人気のある；流行の"], [786, "grade", "程度；成績；学年／段階別にする"], [787, "degree", "(温度などの)度；程度；学位"], [788, "university", "(総合)大学"], [789, "thought", "考え；思いつき"], [790, "notion", "考え；理解；意向"], [791, "concept", "概念；発想；基本的な考え"], [792, "policy", "政策；信条"], [793, "principle", "主義；方針；(自然の)原理；原則"], [794, "abstract", "抽象的な／要約／を要約する"], [795, "concrete", "具体的な／コンクリート"], [796, "education", "教育"], [797, "lecture", "講義；講演／講義[講演]する"], [798, "professor", "教授"], [799, "classical", "古典の；クラシックの"], [800, "especially", "特に"], [801, "test", "検査；試験；実験；試金石／試験する；検査する"], [802, "silence", "沈黙；静けさ"], [803, "advice", "忠告；助言"], [804, "score", "(試合・試験の)得点；楽譜／得点する"], [805, "average", "平均／平均的な"], [806, "whole", "《the -》全体[全部]の；まるごとの"], [807, "summary", "要約"], [808, "detail", "細部；《-s》詳細"], [809, "now", "今；さて"], [810, "immediately", "即座に；直接に"], [811, "major", "主要な；大部分の；重大な；長調の／《〜を》専攻する(in)"], [812, "minor", "それほど重要でない，小さな；少数の；短調の"], [813, "key", "かぎ；手がかり；(音楽の)調；《形容詞的に》重要な"], [814, "simply", "ただ単に；簡単に"], [815, "since", "…して以来；…だから／〜以来"], [816, "performance", "遂行；上演；演奏；成績"], [817, "able", "可能な；有能な"], [818, "ability", "能力；才能"], [819, "unable", "《…することが》できない《to do》"], [820, "available", "手に入る；利用できる"], [821, "afford", "〜を持てる(経済的)余裕がある；…できる余裕がある《to do》；(機会など)を与える"], [822, "capacity", "能力；容量"], [823, "talent", "才能(ある人々)"], [824, "potential", "潜在的な；可能性のある／潜在能力；可能性"], [825, "instinct", "本能"], [826, "skill", "技術；技能；熟練"], [827, "technique", "技術；技巧"], [828, "technology", "科学技術"], [829, "editor", "編集者"], [830, "magazine", "雑誌"], [831, "extreme", "極端；極端な行動／極端な"], [832, "provide", "を(人に)供給する《for, to》／に《物を》提供する《with》"], [833, "supply", "を(人に)供給する《for, to》／に《物を》与える《with》／供給；生活必需品"], [834, "reader", "読者，読む人"], [835, "statistics", "統計(学)"], [836, "journalist", "ジャーナリスト"], [837, "instruct", "に教える；に指示する"], [838, "command", "命令；指揮(権)；(言語の)運用力／を指揮[命令]する；(風景など)を見下ろす"], [839, "order", "に命令する；を注文する／順番；命令；注文"], [840, "well-known", "よく知られている，有名な"], [841, "article", "記事；条項；品物"], [842, "president", "大統領；議長；会長"], [843, "palace", "宮殿；公邸；邸宅"], [844, "republic", "共和国"], [845, "arrive", "《〜に》着く《at, in》"], [846, "reach", "に着く；(手)を伸ばす／を(手を伸ばして)取る／手[足]を伸ばす"], [847, "approach", "近づく／取り組み(方)；接近(方法)"], [848, "access", "接近，出入り；《〜の》利用権《to》／に接続する"], [849, "sentence", "文；判決／(刑を)に宣告する"], [850, "refuse", "を拒絶する／断る"], [851, "decline", "減少する；衰退する／を断る／減少；衰退；低下"], [852, "deny", "を否定する；を拒む"], [853, "reject", "を拒絶する"], [854, "publish", "を出版する；を発表する；を掲載する"], [855, "surround", "を囲む"], [856, "height", "高さ"], [857, "length", "(物や時間の)長さ"], [858, "depth", "深さ"], [859, "width", "幅；広さ"], [860, "measure", "を測る；を評価する／対策；手段"], [861, "obtain", "を入手する；を獲得する"], [862, "acquire", "を習得する；を手に入れる"], [863, "gain", "を手に入れる；をもうける／(さらに)よくなる；増加する／利益；増大"], [864, "earn", "(お金・名声など)を得る；をもたらす"], [865, "meanwhile", "その間に；他方"], [866, "impatient", "いらいらしている；待ち遠しく思う"], [867, "patient", "患者／忍耐強い"], [868, "press", "押すこと；印刷；報道(機関)／を圧迫する；を強要する"], [869, "urgent", "緊急の；催促する"], [870, "receive", "を受け取る；を被る"], [871, "reply", "返事／《〜に》答える《to》／と答える"], [872, "inform", "に《〜を》知らせる《of》／情報を提供する"], [873, "announce", "を発表する"], [874, "fire", "を解雇する；を発砲する／火；火事"], [875, "fail", "に落ちる；…し損なう；(人)の役に立たない／《〜に》失敗する《in》"], [876, "reluctantly", "いやいやながら，しぶしぶ"], [877, "reluctant", "気の進まない"], [878, "originally", "元来は；独創的に"], [879, "poor", "貧しい；粗末な；かわいそうな"], [880, "arrest", "を逮捕する／逮捕"], [881, "prison", "刑務所；拘置所"], [882, "allow", "を許す；を認める"], [883, "forgive", "(人・行為・罪など)を許す"], [884, "excuse", "を許す／言い訳"], [885, "permit", "を許す；を可能にする"], [886, "license", "を認可する／免許(証)"], [887, "step", "歩み；(はしご・階段などの)段；手段／歩く／(足)を踏み入れる"], [888, "stage", "(発達の)段階；舞台"], [889, "process", "過程"], [890, "lead", "(道などが)通じる／を導く；を率いる／首位"], [891, "direct", "を向ける／に指図する／に道を教える／直接の"], [892, "guide", "案内する／指導する／案内人[書]；指導者；指針"], [893, "control", "を支配する／を制御する／を抑制する／支配(力)；抑制"], [894, "operate", "を操作する／動く；作用する／手術する"], [895, "persuade", "を《〜するよう》説得する《to do》"], [896, "convince", "(人)を確信[納得]させる"], [897, "dominate", "支配する"], [898, "wall", "壁"]];
 
 // ==CORE_START==
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function shuffle(arr,rnd){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function makeChoices(words,correctIdx,answerKey,rnd){
-  const correct=words[correctIdx][answerKey];
-  const pool=words.filter((w,i)=>i!==correctIdx&&w[answerKey]!==correct);
-  const picked=shuffle(pool,rnd).slice(0,3).map(w=>w[answerKey]);
+function makeChoices(allWords,correctWordNo,answerKey,rnd){
+  // allWords: 問題を出す単語の集合に関係なく、常に全単語から選択肢を作る（出題範囲が少ないときに選択肢が足りなくなるのを防ぐ）
+  const correctWord=allWords.find(w=>w[0]===correctWordNo);
+  const correct=correctWord[answerKey];
+  const seen=new Set([correct]);
+  const pool=[];
+  allWords.forEach(w=>{
+    if(w[0]===correctWordNo)return;
+    const v=w[answerKey];
+    if(seen.has(v))return; // 同じ表記の選択肢が重複して出ないようにする
+    seen.add(v);pool.push(v);
+  });
+  const picked=shuffle(pool,rnd).slice(0,3);
   return shuffle([correct,...picked],rnd);
 }
 function spellBoxes(en){
@@ -172,52 +275,182 @@ function spellBoxes(en){
 }
 function checkSpelling(typed,en){return typed.trim().toLowerCase()===en.toLowerCase();}
 function loadStore(raw){try{return JSON.parse(raw||'{}');}catch(e){return{};}}
-function markWrong(store,no){store[no]=store[no]||{};store[no].mistake=true;return store;}
-function markCorrect(store,no){if(store[no])store[no].mistake=false;return store;}
-function isMistake(store,no){return!!(store[no]&&store[no].mistake);}
-function toggleFav(store,no){store[no]=store[no]||{};store[no].fav=!store[no].fav;return store;}
+function entry(store,no){
+  store[no]=store[no]||{};
+  store[no].modes=store[no].modes||{};
+  return store[no];
+}
+function modeEntry(store,no,mode){
+  const e=entry(store,no);
+  e.modes[mode]=e.modes[mode]||{attempted:false,everWrong:false,stillWrong:false};
+  return e.modes[mode];
+}
+function markWrong(store,no,mode){const m=modeEntry(store,no,mode);m.attempted=true;m.everWrong=true;m.stillWrong=true;return store;}
+function markCorrect(store,no,mode){const m=modeEntry(store,no,mode);m.attempted=true;m.stillWrong=false;return store;}
+function isStillWrong(store,no,mode){const e=store[no];return!!(e&&e.modes&&e.modes[mode]&&e.modes[mode].stillWrong);}
+function isEverWrong(store,no,mode){const e=store[no];return!!(e&&e.modes&&e.modes[mode]&&e.modes[mode].everWrong);}
+function isAttempted(store,no,mode){const e=store[no];return!!(e&&e.modes&&e.modes[mode]&&e.modes[mode].attempted);}
+function isStillWrongAny(store,no){const e=store[no];if(!e||!e.modes)return false;return Object.keys(e.modes).some(m=>e.modes[m].stillWrong);}
+function isEverWrongAny(store,no){const e=store[no];if(!e||!e.modes)return false;return Object.keys(e.modes).some(m=>e.modes[m].everWrong);}
+function isAttemptedAny(store,no){const e=store[no];if(!e||!e.modes)return false;return Object.keys(e.modes).some(m=>e.modes[m].attempted);}
+function isSolved(store,no){return isAttemptedAny(store,no)&&!isStillWrongAny(store,no);}
+function toggleFav(store,no){const e=entry(store,no);e.fav=!e.fav;return store;}
 function isFav(store,no){return!!(store[no]&&store[no].fav);}
 // ==CORE_END==
 
 /* ===== UI ===== */
 const $=s=>document.querySelector(s);
-const KEY='vocab-s1-635-898:v1';
-let store=loadStore(localStorage.getItem(KEY));
-function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+const LOGIN_KEY='vocab-s1-login:v2';
+const LOCAL_CACHE_PREFIX='vocab-s1-cache:';
+let store={};
+let currentKey=null; // 学籍番号＋生年月日から作ったハッシュ値。これが実際の保存場所になる
+async function sha256Hex(text){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
+  return[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function loginKeyFor(id,bd){return sha256Hex('vocab-s1:'+id+':'+bd);}
+function localCacheKey(key){return LOCAL_CACHE_PREFIX+key;}
+function saveLocalCache(key,data){try{localStorage.setItem(localCacheKey(key),JSON.stringify(data));}catch(e){}}
+function loadLocalCache(key){try{return JSON.parse(localStorage.getItem(localCacheKey(key))||'{}');}catch(e){return{};}}
+function save(){
+  if(!currentKey)return;
+  saveLocalCache(currentKey,store);
+  setDoc(doc(db,'vocabProgress',currentKey),{data:store,updatedAt:Date.now()})
+    .catch(()=>{ /* オフライン等。次回保存時に再試行される。端末内の記録は残る */ });
+}
+function loadLoginInfo(){try{return JSON.parse(localStorage.getItem(LOGIN_KEY)||'null');}catch(e){return null;}}
+function saveLoginInfo(key){try{localStorage.setItem(LOGIN_KEY,JSON.stringify({key}));}catch(e){}}
+function clearLoginInfo(){try{localStorage.removeItem(LOGIN_KEY);}catch(e){}}
 
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('#'+id).classList.add('on');window.scrollTo(0,0);}
+function validateLoginId(id){
+  const s=String(id||'').trim();
+  if(!/^\d{7}$/.test(s))return'学籍番号は数字7桁で入力してください（入学年度4桁＋下駄箱の番号3桁）。';
+  return null;
+}
+function validateLoginBd(bd){
+  const s=String(bd||'').trim();
+  if(!/^\d{8}$/.test(s))return'生年月日は数字8桁（例：20100401）で入力してください。';
+  const y=+s.slice(0,4),m=+s.slice(4,6),d=+s.slice(6,8);
+  const dt=new Date(y,m-1,d);
+  const today=new Date();today.setHours(0,0,0,0);
+  if(dt.getFullYear()!==y||dt.getMonth()!==m-1||dt.getDate()!==d)return'生年月日が正しい日付ではありません。';
+  if(dt>today)return'生年月日が今日より後になっています。';
+  if(y<1990||y>today.getFullYear())return'生年月日が正しくありません。';
+  return null;
+}
+async function doLogin(key,msgEl){
+  msgEl.textContent='確認しています…';
+  try{
+    const ref=doc(db,'vocabProgress',key);
+    const snap=await getDoc(ref);
+    let isNew=false;
+    if(snap.exists()){
+      store=snap.data().data||{};
+    }else{
+      isNew=true;
+      store=loadLocalCache(key); // 初回はこの端末のキャッシュがあれば使う
+      await setDoc(ref,{data:store,updatedAt:Date.now()});
+    }
+    currentKey=key;
+    saveLoginInfo(key);
+    saveLocalCache(key,store);
+    return{ok:true,isNew};
+  }catch(e){
+    msgEl.textContent='通信エラーが発生しました。インターネット接続を確認してください。';
+    return{ok:false,isNew:false};
+  }
+}
+$('#loginBtn').addEventListener('click',async()=>{
+  const id=$('#loginId').value.trim(),bd=$('#loginBd').value.trim();
+  const idErr=validateLoginId(id),bdErr=validateLoginBd(bd);
+  $('#f-loginId').classList.toggle('invalid',!!idErr);$('#f-loginId .err').textContent=idErr||'';
+  $('#f-loginBd').classList.toggle('invalid',!!bdErr);$('#f-loginBd .err').textContent=bdErr||'';
+  if(idErr||bdErr)return;
+  $('#loginBtn').disabled=true;
+  const key=await loginKeyFor(id,bd);
+  const res=await doLogin(key,$('#loginMsg'));
+  $('#loginBtn').disabled=false;
+  if(res.ok){
+    $('#loginMsg').textContent='';
+    $('#whoAmI').textContent=res.isNew
+      ?'はじめての記録です。前にも使ったことがある場合は、学籍番号・生年月日の入力ミスがないか確認してください。'
+      :'おかえりなさい。前回までの記録を読み込みました。';
+    show('screen-home');
+  }
+});
+$('#switchUserBtn').addEventListener('click',()=>{
+  clearLoginInfo();currentKey=null;store={};
+  $('#loginId').value='';$('#loginBd').value='';$('#loginMsg').textContent='';
+  show('screen-login');
+});
+async function autoLogin(){
+  const info=loadLoginInfo();
+  if(!info)return;
+  store=loadLocalCache(info.key); // まずローカルの記録で即座に使えるようにする
+  currentKey=info.key;
+  $('#whoAmI').textContent='前回までの記録を読み込んでいます…';
+  show('screen-home');
+  const res=await doLogin(info.key,{set textContent(v){}}); // 裏でFirestoreの最新記録を取得
+  // 通信できない場合も、ひとまずこの端末の記録で続行する
+  $('#whoAmI').textContent=res.ok?'':'（オフラインのため、この端末に保存された記録で表示しています）';
+}
+// スクリプト全体の初期化（session などの宣言）が終わってから実行する
+setTimeout(autoLogin,0);
+
+function show(id){
+  if(id!=='screen-quiz'&&session&&session.autoTimer){clearTimeout(session.autoTimer);session.autoTimer=null;}
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('#'+id).classList.add('on');window.scrollTo(0,0);
+}
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show('screen-'+b.dataset.go)));
 
 const WORD_BY_NO={};WORDS.forEach(w=>{WORD_BY_NO[w[0]]=w;});
-function mistakeCount(){return WORDS.filter(w=>isMistake(store,w[0])).length;}
+function everWrongWords(mode){return WORDS.filter(w=>isEverWrong(store,w[0],mode));}
+function stillWrongWords(mode){return WORDS.filter(w=>isStillWrong(store,w[0],mode));}
 function favCount(){return WORDS.filter(w=>isFav(store,w[0])).length;}
 
 /* ---- モード選択 ---- */
 const MODE_LABEL={ej:'英→日　4択',je:'日→英　4択',spell:'日→英　つづり入力'};
 let pendingMode=null;
+function newWords(mode){return WORDS.filter(w=>!isAttempted(store,w[0],mode));}
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
   pendingMode=b.dataset.mode;
   $('#pickTitle').textContent=MODE_LABEL[pendingMode];
-  $('#pickAllSub').textContent='全'+WORDS.length+'語（No.635〜898、一部欠番あり）';
-  const mc=mistakeCount();
-  $('#pickMistakeSub').textContent=mc>0?(mc+'語'):'まだありません';
-  $('#pickMistake').disabled=mc===0;
+  $('#pickAllSub').textContent='全'+WORDS.length+'語（No.635〜898）';
+  const nc=newWords(pendingMode).length,ec=everWrongWords(pendingMode).length,sc=stillWrongWords(pendingMode).length;
+  $('#pickNewSub').textContent=nc>0?(nc+'語'):'もうありません';
+  $('#pickNew').disabled=nc===0;
+  $('#pickEverSub').textContent=ec>0?(ec+'語'):'まだありません';
+  $('#pickEver').disabled=ec===0;
+  $('#pickStillSub').textContent=sc>0?(sc+'語'):'まだありません';
+  $('#pickStill').disabled=sc===0;
+  $('#pickFromNo').value='';$('#pickFromErr').textContent='';
   show('screen-pick');
 }));
 $('#pickAll').addEventListener('click',()=>startQuiz(pendingMode,WORDS));
-$('#pickMistake').addEventListener('click',()=>startQuiz(pendingMode,WORDS.filter(w=>isMistake(store,w[0]))));
+$('#pickNew').addEventListener('click',()=>startQuiz(pendingMode,newWords(pendingMode)));
+$('#pickEver').addEventListener('click',()=>startQuiz(pendingMode,everWrongWords(pendingMode)));
+$('#pickStill').addEventListener('click',()=>startQuiz(pendingMode,stillWrongWords(pendingMode)));
+$('#pickFromBtn').addEventListener('click',()=>{
+  const n=parseInt($('#pickFromNo').value,10);
+  if(!n){$('#pickFromErr').textContent='番号を入力してください（635〜898）。';return;}
+  const subset=WORDS.filter(w=>w[0]>=n);
+  if(!subset.length){$('#pickFromErr').textContent='その番号以降の単語がありません。';return;}
+  startQuiz(pendingMode,subset,{ordered:true});
+});
 $('#retryMistakeBtn').addEventListener('click',()=>{
-  const mc=mistakeCount();
-  if(mc===0){show('screen-home');return;}
-  startQuiz(session.mode,WORDS.filter(w=>isMistake(store,w[0])));
+  const sc=stillWrongWords(session.mode).length;
+  if(sc===0){show('screen-home');return;}
+  startQuiz(session.mode,stillWrongWords(session.mode));
 });
 
 /* ---- クイズ本体 ---- */
 let session=null;
-function startQuiz(mode,wordSet){
+function startQuiz(mode,wordSet,opts){
   if(!wordSet.length){show('screen-home');return;}
-  const rnd=mulberry32(Date.now()&0xffffffff);
-  session={mode,order:shuffle(wordSet,rnd),idx:0,correct:0,rnd,answered:false};
+  opts=opts||{};
+  const rnd=mulberry32((Date.now()^Math.floor(Math.random()*1e9))&0xffffffff);
+  const order=opts.ordered?wordSet.slice():shuffle(wordSet,rnd);
+  session={mode,order,idx:0,correct:0,rnd,answered:false,results:[]};
   show('screen-quiz');
   renderQuestion();
 }
@@ -228,7 +461,9 @@ function renderQuestion(){
   $('#qProgress').textContent=(session.idx+1)+' / '+session.order.length+'　（正解 '+session.correct+'）';
   $('#qNo').textContent='No.'+w[0];
   $('#qFeedback').textContent='';$('#qFeedback').className='feedback';
-  $('#nextBtn').style.display='none';
+  $('#nextRow').style.display='none';
+  stopCountdownBar();
+  $('#kbdArea').innerHTML='';
   $('#idkBtn').disabled=false;
   updateFav(w[0]);
   if(session.mode==='spell'){
@@ -239,7 +474,7 @@ function renderQuestion(){
     $('#spellArea').innerHTML='';
     const answerKey=session.mode==='ej'?2:1;
     $('#qPrompt').textContent=session.mode==='ej'?w[1]:w[2];
-    const choices=makeChoices(session.order,session.idx,answerKey,session.rnd);
+    const choices=makeChoices(WORDS,w[0],answerKey,session.rnd);
     const box=document.createElement('div');box.className='choices';
     choices.forEach(c=>{
       const b=document.createElement('button');b.className='choice';b.textContent=c;
@@ -257,14 +492,46 @@ $('#favBtn').addEventListener('click',()=>{
   const w=currentWord();store=toggleFav(store,w[0]);save();updateFav(w[0]);
 });
 function lockChoices(){document.querySelectorAll('.choice').forEach(b=>b.disabled=true);}
+const AUTO_ADVANCE_MS=3000;
 function finishAnswer(correct,no){
   session.answered=true;
-  if(correct){session.correct++;store=markCorrect(store,no);}
-  else{store=markWrong(store,no);}
+  if(correct){session.correct++;store=markCorrect(store,no,session.mode);}
+  else{store=markWrong(store,no,session.mode);}
+  session.results.push({no,ok:correct});
   save();
   $('#idkBtn').disabled=true;
-  $('#nextBtn').style.display='inline-block';
+  $('#nextRow').style.display='block';
+  startCountdownBar();
+  if(session.autoTimer)clearTimeout(session.autoTimer);
+  session.autoTimer=setTimeout(()=>{if(session&&session.answered)goNext();},AUTO_ADVANCE_MS);
 }
+function startCountdownBar(){
+  const bar=$('#nextBarWrap');
+  bar.style.transition='none';bar.style.transform='scaleX(1)';
+  // 次のフレームでトランジションを有効にして0まで縮める
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      bar.style.transition='transform '+(AUTO_ADVANCE_MS/1000)+'s linear';
+      bar.style.transform='scaleX(0)';
+    });
+  });
+}
+function stopCountdownBar(){
+  const bar=$('#nextBarWrap');if(!bar)return;
+  bar.style.transition='none';bar.style.transform='scaleX(1)';
+}
+function goNext(){
+  if(session&&session.autoTimer){clearTimeout(session.autoTimer);session.autoTimer=null;}
+  if(!session)return;
+  session.idx++;
+  if(session.idx>=session.order.length){finishQuiz();return;}
+  renderQuestion();
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&session&&session.answered&&$('#screen-quiz').classList.contains('on')){
+    e.preventDefault();goNext();
+  }
+});
 function answerChoice(btn,picked,correctVal){
   if(session.answered)return;
   lockChoices();
@@ -281,40 +548,97 @@ function answerChoice(btn,picked,correctVal){
 function renderSpell(w){
   const boxes=spellBoxes(w[1]);
   const row=document.createElement('div');row.className='spellRow';
-  const inputs=[];
-  boxes.forEach((b,i)=>{
+  // els[i] = {type:'fixed', ch} か {type:'input', el}。w[1]の文字と1対1で対応する。
+  const els=[];
+  boxes.forEach((b)=>{
     if(!b.isLetter){
-      const d=document.createElement('div');d.className='spellBox dash';d.textContent=b.ch;row.appendChild(d);inputs.push(null);return;
+      const d=document.createElement('div');d.className='spellBox dash';d.textContent=b.ch;row.appendChild(d);
+      els.push({type:'fixed',ch:b.ch});return;
     }
     const el=document.createElement('input');
     el.className='spellBox'+(b.fixed?' fixed':'');
-    el.maxLength=1;el.autocomplete='off';el.inputMode='text';el.spellcheck=false;
-    if(b.fixed){el.value=b.ch;el.disabled=true;}
-    row.appendChild(el);inputs.push(el);
+    el.maxLength=1;el.autocomplete='off';el.autocapitalize='off';el.autocorrect='off';el.inputMode='text';el.spellcheck=false;
+    if(b.fixed){el.value=b.ch;el.disabled=true;els.push({type:'fixed',ch:b.ch});}
+    else{els.push({type:'input',el});}
+    row.appendChild(el);
   });
   $('#spellArea').innerHTML='';$('#spellArea').appendChild(row);
-  const editable=inputs.filter(x=>x&&!x.disabled);
+  session.spellEls=els;session.focusedSpellIdx=0;
+  const editable=els.filter(x=>x.type==='input').map(x=>x.el);
   editable.forEach((el,i)=>{
     el.addEventListener('input',()=>{
-      el.value=el.value.replace(/[^a-zA-Z]/g,'').slice(0,1);
+      el.value=el.value.replace(/[^a-zA-Z]/g,'').toLowerCase().slice(0,1);
       if(el.value&&i<editable.length-1)editable[i+1].focus();
-      if(el.value&&i===editable.length-1)checkSpellAnswer(inputs,w);
+      if(el.value&&i===editable.length-1)checkSpellAnswer(els,w);
     });
     el.addEventListener('keydown',e=>{
       if(e.key==='Backspace'&&!el.value&&i>0)editable[i-1].focus();
     });
+    el.addEventListener('focus',()=>{session.focusedSpellIdx=i;});
   });
   if(editable.length)setTimeout(()=>editable[0].focus(),0);
+  renderVirtualKeyboardToggle(editable);
 }
-function checkSpellAnswer(inputs,w){
+function renderVirtualKeyboardToggle(editable){
+  const area=$('#kbdArea');area.innerHTML='';
+  const toggle=document.createElement('button');
+  toggle.className='btn ghost small';toggle.style.marginTop='10px';
+  toggle.textContent='⌨️ キーボードを表示';
+  let shown=false;
+  const kbd=document.createElement('div');
+  kbd.style.cssText='margin-top:10px';
+  const rows=['qwertyuiop','asdfghjkl','zxcvbnm'];
+  rows.forEach((r,ri)=>{
+    const rowEl=document.createElement('div');rowEl.className='kbdRow';
+    if(ri===1)rowEl.style.marginLeft='15px'; // 2段目を少し右にずらす（本物のQWERTY配列に合わせる）
+    r.split('').forEach(ch=>{
+      const b=document.createElement('button');
+      b.type='button';b.className='kbdKey';
+      b.textContent=ch;
+      b.addEventListener('click',()=>virtualType(editable,ch));
+      rowEl.appendChild(b);
+    });
+    if(ri===2){
+      const back=document.createElement('button');
+      back.type='button';back.className='kbdKey kbdBackKey';
+      back.textContent='⌫';
+      back.addEventListener('click',()=>virtualBackspace(editable));
+      rowEl.appendChild(back);
+    }
+    kbd.appendChild(rowEl);
+  });
+  toggle.addEventListener('click',()=>{
+    shown=!shown;kbd.style.display=shown?'block':'none';
+    toggle.textContent=shown?'⌨️ キーボードを隠す':'⌨️ キーボードを表示';
+  });
+  kbd.style.display='none';
+  area.append(toggle,kbd);
+}
+function virtualType(editable,ch){
   if(session.answered)return;
-  const typed=inputs.map(x=>x?x.value:'').join('');
-  inputs.forEach(x=>{if(x)x.disabled=true;});
+  let idx=(typeof session.focusedSpellIdx==='number')?session.focusedSpellIdx:editable.findIndex(x=>!x.value);
+  if(idx<0)idx=editable.length-1;
+  const el=editable[idx];
+  if(!el||el.disabled)return;
+  el.value=ch;
+  el.dispatchEvent(new Event('input'));
+}
+function virtualBackspace(editable){
+  if(session.answered)return;
+  let idx=(typeof session.focusedSpellIdx==='number')?session.focusedSpellIdx:editable.length-1;
+  const el=editable[idx];
+  if(el&&el.value){el.value='';return;}
+  if(idx>0){editable[idx-1].value='';editable[idx-1].focus();}
+}
+function checkSpellAnswer(els,w){
+  if(session.answered)return;
+  const typed=els.map(x=>x.type==='input'?x.el.value:x.ch).join('');
+  els.forEach(x=>{if(x.type==='input')x.el.disabled=true;});
   const ok=checkSpelling(typed,w[1]);
   $('#qFeedback').textContent=ok?'正解！':'不正解　正解：'+w[1];
   $('#qFeedback').className='feedback '+(ok?'ok':'err');
   if(!ok){
-    inputs.forEach((x,i)=>{if(x)x.value=w[1][i];});
+    els.forEach((x,i)=>{if(x.type==='input')x.el.value=w[1][i];});
   }
   finishAnswer(ok,w[0]);
 }
@@ -322,12 +646,7 @@ $('#idkBtn').addEventListener('click',()=>{
   if(session.answered)return;
   const w=currentWord();
   if(session.mode==='spell'){
-    const row=$('#spellArea .spellRow');
-    let li=0;
-    [...row.children].forEach(c=>{
-      if(c.classList.contains('dash'))return;
-      c.disabled=true;c.value=w[1][li];li++;
-    });
+    (session.spellEls||[]).forEach((x,i)=>{if(x.type==='input'){x.el.disabled=true;x.el.value=w[1][i];}});
   }else{
     lockChoices();
     document.querySelectorAll('.choice').forEach(b=>{if(b.textContent===(session.mode==='ej'?w[2]:w[1]))b.classList.add('correct');});
@@ -337,26 +656,49 @@ $('#idkBtn').addEventListener('click',()=>{
   $('#qFeedback').className='feedback err';
   finishAnswer(false,w[0]);
 });
-$('#nextBtn').addEventListener('click',()=>{
-  session.idx++;
-  if(session.idx>=session.order.length){finishQuiz();return;}
-  renderQuestion();
+$('#nextBtn').addEventListener('click',goNext);
+$('#endQuizBtn').addEventListener('click',()=>{
+  if(session&&session.autoTimer){clearTimeout(session.autoTimer);session.autoTimer=null;}
+  finishQuiz();
 });
 function finishQuiz(){
-  $('#resultScore').textContent=session.correct+' / '+session.order.length;
-  const mc=mistakeCount();
-  $('#resultSub').textContent=mc>0?('今、間違えたままの単語が '+mc+' 語あります。'):'間違えた単語はありません。';
-  $('#retryMistakeBtn').style.display=mc>0?'inline-block':'none';
+  const total=session.results.length; // 途中で終了した場合は order.length ではなく、実際に答えた数を使う
+  $('#resultScore').textContent=session.correct+' / '+total;
+  const deg=total?Math.round(session.correct/total*360):0;
+  $('#scoreRing').style.setProperty('--ring-deg',deg+'deg');
+  $('#scoreRing').innerHTML='<div class="inner">'+(total?Math.round(session.correct/total*100):0)+'%</div>';
+  const sc=stillWrongWords(session.mode).length;
+  $('#resultSub').textContent=sc>0?('この問題形式で、今まだ間違えたままの単語が '+sc+' 語あります。'):'この問題形式で、間違えたままの単語はありません。';
+  $('#retryMistakeBtn').style.display=sc>0?'block':'none';
+  const body=$('#resultBody');body.innerHTML='';
+  session.results.forEach(r=>{
+    const w=WORD_BY_NO[r.no];
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td>'+w[0]+'</td><td>'+w[1]+'</td><td>'+w[2]+'</td><td></td>';
+    const badge=document.createElement('span');badge.className='resBadge '+(r.ok?'ok':'ng');badge.textContent=r.ok?'○':'×';
+    tr.lastElementChild.appendChild(badge);
+    body.appendChild(tr);
+  });
   show('screen-result');
 }
 
 /* ---- 単語リスト ---- */
-let hideEn=false,hideJa=false;
+let hideEn=false,hideJa=false,listFilter='all';
 const revealedEn=new Set(),revealedJa=new Set();
+const MODE_ORDER=['ej','je','spell'];
+const MODE_NUM={ej:'①',je:'②',spell:'③'};
+function passFilter(no){
+  if(listFilter==='all')return true;
+  if(listFilter==='fav')return isFav(store,no);
+  if(listFilter==='ever')return MODE_ORDER.some(m=>isEverWrong(store,no,m));
+  if(listFilter==='still')return MODE_ORDER.some(m=>isStillWrong(store,no,m));
+  return true;
+}
 function renderList(){
   const body=$('#listBody');body.innerHTML='';
-  WORDS.forEach(w=>{
+  WORDS.filter(w=>passFilter(w[0])).forEach(w=>{
     const tr=document.createElement('tr');
+    if(isSolved(store,w[0]))tr.className='rowCorrect';
     const tdNo=document.createElement('td');tdNo.textContent=w[0];
     const tdEn=document.createElement('td');
     const enHidden=hideEn&&!revealedEn.has(w[0]);
@@ -368,16 +710,32 @@ function renderList(){
     const jaSpan=document.createElement('span');jaSpan.className='cell'+(jaHidden?' hidden':'');jaSpan.textContent=w[2];
     jaSpan.addEventListener('click',()=>{if(revealedJa.has(w[0]))revealedJa.delete(w[0]);else revealedJa.add(w[0]);renderList();});
     tdJa.appendChild(jaSpan);
+    const tdRec=document.createElement('td');
+    const chips=document.createElement('div');chips.className='modeChips';
+    MODE_ORDER.forEach(m=>{
+      const c=document.createElement('span');
+      const still=isStillWrong(store,w[0],m),ever=isEverWrong(store,w[0],m),att=isAttempted(store,w[0],m);
+      c.className='chip'+(still?' still':ever?' ever':(att?' ok':''));
+      c.textContent=MODE_NUM[m];c.title=MODE_LABEL[m]+'：'+(still?'間違えたまま':ever?'間違えたことがある（今は正解）':(att?'正解':'記録なし'));
+      chips.appendChild(c);
+    });
+    tdRec.appendChild(chips);
     const tdFav=document.createElement('td');
-    const star=document.createElement('button');star.className='star '+(isFav(store,w[0])?'on':'off');star.textContent='★';star.style.fontSize='16px';
+    const star=document.createElement('button');star.className='star '+(isFav(store,w[0])?'on':'off');star.textContent='★';star.style.cssText='font-size:16px;padding:4px;min-width:auto;min-height:auto';
     star.addEventListener('click',()=>{store=toggleFav(store,w[0]);save();renderList();});
     tdFav.appendChild(star);
-    tr.append(tdNo,tdEn,tdJa,tdFav);
+    tr.append(tdNo,tdEn,tdJa,tdRec,tdFav);
     body.appendChild(tr);
   });
 }
 $('#hideEnBtn').addEventListener('click',()=>{hideEn=!hideEn;revealedEn.clear();$('#hideEnBtn').textContent=hideEn?'英単語をすべて表示':'英単語をすべて隠す';renderList();});
 $('#hideJaBtn').addEventListener('click',()=>{hideJa=!hideJa;revealedJa.clear();$('#hideJaBtn').textContent=hideJa?'日本語訳をすべて表示':'日本語訳をすべて隠す';renderList();});
+document.querySelectorAll('.filterBtn').forEach(b=>b.addEventListener('click',()=>{
+  listFilter=b.dataset.filter;
+  document.querySelectorAll('.filterBtn').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  renderList();
+}));
 document.querySelector('[data-go="list"]').addEventListener('click',renderList);
 </script>
 </body>
