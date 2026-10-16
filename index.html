@@ -60,6 +60,7 @@ h2{font-family:"Shippori Mincho",serif;font-weight:800;font-size:23px;letter-spa
 .spellRow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 18px}
 .spellBox{width:40px;height:52px;text-align:center;font-size:22px;border:1px solid var(--line);border-radius:7px;background:var(--surface);color:var(--ink);font:inherit;padding:0}
 .spellBox.fixed{background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center}
+.spellBox.wrongChar{background:var(--err-bg);border-color:var(--err);color:var(--err);font-weight:800}
 .spellBox.dash{border:0;background:none;width:12px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
 .spellBox:focus-visible{outline:2px solid var(--accent)}
 .resultBox{text-align:center;padding:30px 10px}
@@ -129,7 +130,7 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
       <div><span>学籍番号</span><b id="rc-id"></b></div>
       <div><span>生年月日</span><b id="rc-bd"></b></div>
     </div>
-    <p class="sub" style="margin:14px 0 0">内容が正しければ登録してください。間違えている場合は、入力し直してください。</p>
+    <p class="sub" style="margin:14px 0 0;color:var(--err)">内容が正しければ登録してください。<b>学籍番号・生年月日のどちらかを間違えて登録すると、後から同じ内容で入力してもログインできなくなります。</b>必ず確認してから登録してください。</p>
     <div class="row" style="margin-top:14px">
       <button class="btn ghost" id="rcBackBtn" style="flex:1">入力し直す</button>
       <button class="btn" id="rcConfirmBtn" style="flex:1">この内容で登録する</button>
@@ -159,7 +160,7 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
     <button class="btn ghost small" id="adminReloadBtn">一覧を読み込む</button>
     <div class="tblwrap" style="overflow-x:auto;margin-top:10px">
       <table>
-        <thead><tr><th>学籍番号</th><th>生年月日</th><th>登録日時</th></tr></thead>
+        <thead><tr><th>学籍番号</th><th>生年月日</th><th>登録日時</th><th>操作</th></tr></thead>
         <tbody id="adminBody"></tbody>
       </table>
     </div>
@@ -278,7 +279,7 @@ th{color:var(--muted);font-weight:700;font-size:12px;position:sticky;top:0;backg
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCcjISrD6HsF0EsrA6i8uoqK4XAUfsJFTc",
   authDomain: "seat-reserve-94e1f.firebaseapp.com",
@@ -497,14 +498,40 @@ async function loadAdminList(){
     rows.sort((a,b)=>a.id.localeCompare(b.id));
     $('#adminMsg').textContent=rows.length+'件';
     rows.forEach(r=>{
-      const tr=document.createElement('tr');tr.style.cursor='pointer';
+      const tr=document.createElement('tr');
       const dt=r.createdAt?new Date(r.createdAt).toLocaleString('ja-JP'):'（不明）';
-      tr.innerHTML='<td>'+r.id+'</td><td>'+(r.birthdate?formatBd(r.birthdate):'（未取得）')+'</td><td>'+dt+'</td>';
-      if(r.birthdate)tr.addEventListener('click',()=>showAdminDetail(r));
+      const tdId=document.createElement('td');tdId.textContent=r.id;
+      const tdBd=document.createElement('td');tdBd.textContent=r.birthdate?formatBd(r.birthdate):'（未取得）';
+      const tdDt=document.createElement('td');tdDt.textContent=dt;
+      const tdOp=document.createElement('td');
+      if(r.birthdate){
+        const viewBtn=document.createElement('button');viewBtn.className='btn ghost small';viewBtn.textContent='進捗';
+        viewBtn.addEventListener('click',()=>showAdminDetail(r));
+        tdOp.appendChild(viewBtn);
+      }
+      const delBtn=document.createElement('button');delBtn.className='btn ghost small';delBtn.style.cssText='margin-left:6px;color:var(--err);border-color:var(--err)';delBtn.textContent='削除';
+      delBtn.addEventListener('click',()=>deleteStudent(r));
+      tdOp.appendChild(delBtn);
+      tr.append(tdId,tdBd,tdDt,tdOp);
       $('#adminBody').appendChild(tr);
     });
   }catch(e){
     $('#adminMsg').textContent='読み込みに失敗しました。';
+  }
+}
+async function deleteStudent(r){
+  const label=r.id+(r.birthdate?'（'+formatBd(r.birthdate)+'）':'（生年月日 未取得）');
+  if(!confirm(label+' を削除します。学習記録もまとめて消えます。元に戻せません。よろしいですか？'))return;
+  $('#adminMsg').textContent='削除しています…';
+  try{
+    if(r.birthdate){
+      const key=await loginKeyFor(r.id,r.birthdate);
+      await deleteDoc(doc(db,'vocabProgress',key)).catch(()=>{});
+    }
+    await deleteDoc(doc(db,'vocabStudents',r.id));
+    await loadAdminList();
+  }catch(e){
+    $('#adminMsg').textContent='削除に失敗しました。';
   }
 }
 async function showAdminDetail(r){
@@ -635,7 +662,7 @@ $('#favBtn').addEventListener('click',()=>{
   const w=currentWord();store=toggleFav(store,w[0]);save();updateFav(w[0]);
 });
 function lockChoices(){document.querySelectorAll('.choice').forEach(b=>b.disabled=true);}
-const AUTO_ADVANCE_MS=3000;
+const AUTO_ADVANCE_MS=5000;
 function finishAnswer(correct,no){
   session.answered=true;
   if(correct){session.correct++;store=markCorrect(store,no,session.mode);}
@@ -710,9 +737,11 @@ function renderSpell(w){
   const editable=els.filter(x=>x.type==='input').map(x=>x.el);
   editable.forEach((el,i)=>{
     el.addEventListener('input',()=>{
-      el.value=el.value.replace(/[^a-zA-Z]/g,'').toLowerCase().slice(0,1);
+      // スマホ（特にiOS）だと、新しく打った文字が直前の文字の後ろに付く形で来ることがあるため、
+      // 最初の1文字ではなく「最後に打たれた1文字」を採用する
+      el.value=el.value.replace(/[^a-zA-Z]/g,'').toLowerCase().slice(-1);
       if(el.value&&i<editable.length-1)editable[i+1].focus();
-      if(el.value&&i===editable.length-1)checkSpellAnswer(els,w);
+      if(el.value&&i===editable.length-1)setTimeout(()=>checkSpellAnswer(els,w),30);
     });
     el.addEventListener('keydown',e=>{
       if(e.key==='Backspace'&&!el.value&&i>0)editable[i-1].focus();
@@ -722,12 +751,13 @@ function renderSpell(w){
   if(editable.length)setTimeout(()=>editable[0].focus(),0);
   renderVirtualKeyboardToggle(editable);
 }
+let kbdShown=false; // 一度表示したら、次の問題でも自動で出しておく
 function renderVirtualKeyboardToggle(editable){
   const area=$('#kbdArea');area.innerHTML='';
   const toggle=document.createElement('button');
   toggle.className='btn ghost small';toggle.style.marginTop='10px';
-  toggle.textContent='⌨️ キーボードを表示';
-  let shown=false;
+  toggle.textContent=kbdShown?'⌨️ キーボードを隠す':'⌨️ キーボードを表示';
+  let shown=kbdShown;
   const kbd=document.createElement('div');
   kbd.style.cssText='margin-top:10px';
   const rows=['qwertyuiop','asdfghjkl','zxcvbnm'];
@@ -751,10 +781,10 @@ function renderVirtualKeyboardToggle(editable){
     kbd.appendChild(rowEl);
   });
   toggle.addEventListener('click',()=>{
-    shown=!shown;kbd.style.display=shown?'block':'none';
+    shown=!shown;kbdShown=shown;kbd.style.display=shown?'block':'none';
     toggle.textContent=shown?'⌨️ キーボードを隠す':'⌨️ キーボードを表示';
   });
-  kbd.style.display='none';
+  kbd.style.display=shown?'block':'none';
   area.append(toggle,kbd);
 }
 function virtualType(editable,ch){
@@ -781,7 +811,12 @@ function checkSpellAnswer(els,w){
   $('#qFeedback').textContent=ok?'正解！':'不正解　正解：'+w[1];
   $('#qFeedback').className='feedback '+(ok?'ok':'err');
   if(!ok){
-    els.forEach((x,i)=>{if(x.type==='input')x.el.value=w[1][i];});
+    // 自分が打った文字はそのまま残し、正解と違う文字だけ赤くする（上書きしない）
+    els.forEach((x,i)=>{
+      if(x.type!=='input')return;
+      const correct=(w[1][i]||'').toLowerCase();
+      if((x.el.value||'').toLowerCase()!==correct)x.el.classList.add('wrongChar');
+    });
   }
   finishAnswer(ok,w[0]);
 }
